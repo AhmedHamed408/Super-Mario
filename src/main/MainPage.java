@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.pkgclass;
+package main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -70,7 +70,7 @@ Play_Button_imageview.setOnMouseExited(e -> {
     Play_Button_imageview.setImage(Play_Button_image);
 });
         
-                 Image Setting_Button_image = new Image("images/Buttons/Setting.png");
+        Image Setting_Button_image = new Image("images/Buttons/Setting.png");
         ImageView Setting_Button_imageview = new ImageView(Setting_Button_image);
         int Setting_x=800 ;
         int Setting_y=140 ;
@@ -199,10 +199,49 @@ Exit_Button_imageview.setOnMouseExited(e -> {
     // Change the image back when mouse exits
     Exit_Button_imageview.setImage(Exit_Button_image);
 });
+
+ Image MuteOff_Button_image = new Image("images/Buttons/MuteOff.png");
+        ImageView MuteOff_Button_imageview = new ImageView(MuteOff_Button_image);
+        int MuteOff_x=1210 ;
+        int MuteOff_y=-60 ;
+        MuteOff_Button_imageview.setFitWidth(200);
+        MuteOff_Button_imageview.setFitHeight(200);
+        MuteOff_Button_imageview.setX(MuteOff_x);
+        MuteOff_Button_imageview.setY(MuteOff_y);
+        MuteOff_Button_imageview.setOnMouseClicked(e->{
+           
+
+        });
+        
+        
+         MuteOff_Button_imageview.setOnMouseEntered(e -> {
+    // Change the image when mouse enters
+    MuteOff_Button_imageview.setImage(new Image("images/Buttons/MuteOff.png"));
+});
+MuteOff_Button_imageview.setOnMousePressed(event -> {
+    Main_Pane.getChildren().removeAll();
+            ImageView MuteOff_Button_Clicked_imageview = new ImageView(new Image("images/Buttons/MuteOff_on.png"));
+            MuteOff_Button_Clicked_imageview.setFitWidth(200);
+            MuteOff_Button_Clicked_imageview.setFitHeight(200);
+            MuteOff_Button_Clicked_imageview.setX(MuteOff_x);
+            MuteOff_Button_Clicked_imageview.setY(MuteOff_y);
+            Main_Pane.getChildren().add(MuteOff_Button_Clicked_imageview);
+});
+
+MuteOff_Button_imageview.setOnMouseReleased(event -> {
+  Main_Pane.getChildren().removeAll();
+            ImageView MuteOff_Button_Clicked_imageview = new ImageView(new Image("images/Buttons/Mute.png"));
+            MuteOff_Button_Clicked_imageview.setFitWidth(200);
+            MuteOff_Button_Clicked_imageview.setFitHeight(200);
+            MuteOff_Button_Clicked_imageview.setX(MuteOff_x);
+            MuteOff_Button_Clicked_imageview.setY(MuteOff_y);
+            Main_Pane.getChildren().add(MuteOff_Button_Clicked_imageview);
+});
+
         
      
         
-        Main_Pane.getChildren().addAll(background_imageview,Play_Button_imageview,Setting_Button_imageview,About_Button_imageview,Exit_Button_imageview);
+        Main_Pane.getChildren().addAll(background_imageview,Play_Button_imageview,Setting_Button_imageview,About_Button_imageview,Exit_Button_imageview,MuteOff_Button_imageview);
         
         Scene Main_Scene = new Scene(Main_Pane, 1352, 757);
      

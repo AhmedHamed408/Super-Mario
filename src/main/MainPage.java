@@ -41,6 +41,7 @@ public class MainPage extends Application {
         }
     }
     private static final String WELCOME_TEXT = "Welcome to Super Mario, hope you enjoy!";
+    private static final String Second_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final int CHAR_DELAY_MS = 60; // Delay between characters
     private int charIndex = 0;
 
@@ -49,7 +50,8 @@ public void start(Stage stage) {
     HBox root = new HBox();
     
     // Set background image
-    Image backgroundImage = new Image("file:///C:/Users/ah456/Downloads/download.png");
+    Image backgroundImage = new Image("images/Intial_BackGround.png");
+    
     BackgroundImage backgroundImg = new BackgroundImage(
             backgroundImage,
             BackgroundRepeat.NO_REPEAT,
@@ -93,78 +95,13 @@ public void start(Stage stage) {
     timeline.play();
 
     Scene scene = new Scene(root, 1352, 757);
-    stage.setTitle("Super Mario Welcome Animation");
+    stage.setTitle("Super Mario");
     stage.setScene(scene);
+     stage.setResizable(false);
     stage.show();
 }
-private void transitionToNextScene(Stage stage) {
-    Text nextText = new Text();    
-    HBox nextRoot = new HBox(nextText);
-    Image backgroundImage = new Image("file:///C:/Users/ah456/Downloads/download.png");
-    BackgroundImage backgroundImg = new BackgroundImage(
-            backgroundImage,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT,
-            null,
-            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-    Background background = new Background(backgroundImg);
-    nextRoot.setBackground(background);
-   
-    // Set the font and color for the "Super Mario" text
-    nextText.setFont(Font.loadFont("file:///C://Users//ah456//Downloads//SuperMario256.ttf", 48));
-    Color color1 = Color.RED;
-    Color color2 = Color.BLUE;
-
-    // Create a linear gradient using the two colors
-    LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-            new Stop(0, color1), new Stop(1, color2));
-
-    // Set the gradient as the fill for the text
-    nextText.setFill(gradient);
-
-    nextRoot.setAlignment(Pos.CENTER);
-    Scene nextScene = new Scene(nextRoot, 1352, 757);
-
-    // Animate the text in the second scene
-    animateText(nextText, "Let's get started");
-
-    stage.setScene(nextScene);
-    
-    Timeline timeline = new Timeline();
-    timeline.setCycleCount(nextText.getText().length()); // Use length of nextText
-    timeline.getKeyFrames().add(
-            new KeyFrame(Duration.millis(CHAR_DELAY_MS), event -> {
-                if (charIndex < nextText.getText().length()) { // Use length of nextText
-                    nextText.setText(nextText.getText() + nextText.getText().charAt(charIndex));
-                    charIndex++;
-                }
-            })
-    );
-
-    timeline.setOnFinished(event -> {
-        // Animation finished, transition to the next scene
-        thirdScene(stage);
-    });
-
-    timeline.play();
-}
 
 
-    private void animateText(Text textNode, String text) {
-        final int[] charIndex = {0};
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(text.length());
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(CHAR_DELAY_MS), event -> {
-                    if (charIndex[0] < text.length()) {
-                        textNode.setText(textNode.getText() + text.charAt(charIndex[0]));
-                        charIndex[0]++;
-                    }
-                })
-        );
-        timeline.play();
-        
-    }
     public void thirdScene(Stage Main_Stage) {
 
         Pane Main_Pane = new Pane();
@@ -176,7 +113,7 @@ private void transitionToNextScene(Stage stage) {
         coinview.setX(500);
         coinview.setY(465);
 
-        Image background_image = new Image("images/BackGround1.jpg");
+        Image background_image = new Image("images/BackGround.jpg");
         ImageView background_imageview = new ImageView(background_image);
 
         /**
@@ -340,7 +277,7 @@ private void transitionToNextScene(Stage stage) {
         Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Exit_Button_imageview, MuteOff_Button_imageview);
 
         Scene Main_Scene = new Scene(Main_Pane, 1352, 757);
-        Image icon = new Image("images/icon.jpg");
+        Image icon = new Image("images/icon.png");
         Main_Stage.getIcons().add(icon);
         Main_Stage.setTitle("Super Mario");
         Main_Stage.setScene(Main_Scene);

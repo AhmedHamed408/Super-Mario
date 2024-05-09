@@ -76,7 +76,7 @@ public class AboutWindow {
             
             try {
                 // Open Google in a web browser
-                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -97,7 +97,7 @@ public class AboutWindow {
             
             try {
                 // Open Google in a web browser
-                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+                Desktop.getDesktop().browse(new URI("http://www.linkedin.com/in/abdo-omar-9625a5264"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -117,7 +117,7 @@ public class AboutWindow {
             
             try {
                 // Open Google in a web browser
-                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/ahmed-abd-elkader-275a842a2"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -138,7 +138,7 @@ public class AboutWindow {
             
             try {
                 // Open Google in a web browser
-                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/ahmed-maged-12ba932a8"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -159,6 +159,44 @@ public class AboutWindow {
             
             try {
                 // Open Google in a web browser
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/mohamad0ahmad"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+         
+        /**************************Ahmed_Maged**********************/
+        ImageView Ahmed_MagedView = new ImageView(new Image("images/About/Ahmed_Maged.png"));
+        Ahmed_MagedView.setX(intial_x+400);
+        Ahmed_MagedView.setY(intial_y +425);
+        Ahmed_MagedView.setFitWidth(width + 80);
+        Ahmed_MagedView.setFitHeight(hight);
+       
+        
+        Ahmed_MagedView.setOnMouseClicked(event -> {
+
+            
+            try {
+                // Open Google in a web browser
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+       
+        /****************Ahmed_Aly******************/
+         ImageView Ahmed_AlyView = new ImageView(new Image("images/About/Ahmed_Aly.png"));
+         Ahmed_AlyView.setX(intial_x+870);
+        Ahmed_AlyView.setY(intial_y -4);
+        Ahmed_AlyView.setFitWidth(width-10);
+        Ahmed_AlyView.setFitHeight(hight);
+       
+        
+        Ahmed_AlyView.setOnMouseClicked(event -> {
+
+            
+            try {
+                // Open Google in a web browser
                 Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -166,7 +204,67 @@ public class AboutWindow {
         });
 
         
-         aboutPane.getChildren().addAll(AboutBackGround_imageview,Ahmed_HamedImgView,Mohamed_HassanView,Ahmed_MagedImgView,Ahmed_AbdelkaderView,Abdelaziz_omarImgView,Close_Button_imageview);
+        /****************Hassan_Lashean******************/
+         ImageView Hassan_LasheanView = new ImageView(new Image("images/About/Hassan_Lashean.png"));
+         Hassan_LasheanView.setX(intial_x+885);
+        Hassan_LasheanView.setY(intial_y +440);
+        Hassan_LasheanView.setFitWidth(width-40);
+        Hassan_LasheanView.setFitHeight(hight-30);
+       
+        
+        Hassan_LasheanView.setOnMouseClicked(event -> {
+
+            
+            try {
+                // Open Google in a web browser
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        
+        
+        /****************Mohamed_Kadry******************/
+         ImageView Mohamed_KadryView = new ImageView(new Image("images/About/Mohamed_Kadry.png"));
+         Mohamed_KadryView.setX(intial_x+870);
+        Mohamed_KadryView.setY(intial_y + 205);
+        Mohamed_KadryView.setFitWidth(width-10);
+        Mohamed_KadryView.setFitHeight(hight);
+       
+        
+        Mohamed_KadryView.setOnMouseClicked(event -> {
+
+            
+            try {
+                // Open Google in a web browser
+                Desktop.getDesktop().browse(new URI("https://eg.linkedin.com/in/mohamed-kadry-bba826254"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        
+        
+          /*********************Hassaan_Mohamed*********************/
+        ImageView Hassaan_MohamedImgView = new ImageView(new Image("images/About/Hassaan_Mohamed.png"));
+        
+        Hassaan_MohamedImgView.setX(intial_x);
+        Hassaan_MohamedImgView.setY(intial_y +  420);
+        Hassaan_MohamedImgView.setFitWidth(width);
+        Hassaan_MohamedImgView.setFitHeight(hight);
+        
+        Hassaan_MohamedImgView.setOnMouseClicked(event -> {
+
+            
+            try {
+                // Open Google in a web browser
+                Desktop.getDesktop().browse(new URI("https://www.linkedin.com/in/madyhamed/"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        
+         aboutPane.getChildren().addAll(AboutBackGround_imageview,Ahmed_HamedImgView,Hassaan_MohamedImgView,Mohamed_HassanView,Mohamed_KadryView,Ahmed_MagedImgView,Hassan_LasheanView,Ahmed_MagedView,Ahmed_AbdelkaderView,Abdelaziz_omarImgView,Ahmed_AlyView,Close_Button_imageview);
         
              
         

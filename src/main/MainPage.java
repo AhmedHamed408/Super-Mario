@@ -150,8 +150,7 @@ public class MainPage extends Application {
 
         Play_Button_imageview.setOnMouseClicked(event -> {
             //  Main_Stage.setScene(new GameWindow(Main_Stage).Create());
-                GameSounds gs = new GameSounds();
-                gs.playmenuSound();
+               
             PlayWindow window = new PlayWindow();
             Main_Stage.setScene(window.initContent());
 

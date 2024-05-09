@@ -27,7 +27,7 @@ public class GameSounds {
         playSound_media = new Media(playSound_File.toURI().toString());
         playSound = new MediaPlayer(playSound_media);
         
-        File menuSound_File = new File("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/menusound.mp3");
+        File menuSound_File = new File("D:\\My%20Projects\\Super-Mario\\src/sounds\\menusound.mp3");
         menuSound_media = new Media(menuSound_File.toURI().toString());
         menuSound = new MediaPlayer(menuSound_media);
         

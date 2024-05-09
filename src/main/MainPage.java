@@ -24,95 +24,99 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+//import main.GameWindow;
 
 public class MainPage extends Application {
-    
-    
-     public void logout(Stage stage){
+
+    public void logout(Stage stage) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to logout!");
         alert.setContentText("Do you want to save before exiting?");
 
-        if (alert.showAndWait().get() == ButtonType.OK){
+        if (alert.showAndWait().get() == ButtonType.OK) {
             System.out.println("You successfully logged out");
             stage.close();
         }
     }
+
     private static final String WELCOME_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final String Second_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final int CHAR_DELAY_MS = 60; // Delay between characters
     private int charIndex = 0;
 
     @Override
-public void start(Stage stage) {
-    HBox root = new HBox();
-    
-    // Set background image
-    Image backgroundImage = new Image("images/Intial_BackGround.png");
-    
-    BackgroundImage backgroundImg = new BackgroundImage(
-            backgroundImage,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT,
-            null,
-            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-    Background background = new Background(backgroundImg);
-    root.setBackground(background);
-    
-    Text welcomeText = new Text();
-    welcomeText.setFont(Font.loadFont("file:///C://Users//ah456//Downloads//SuperMario256.ttf", 48));
-    Color color1 = Color.RED;
-    Color color2 = Color.BLUE;
+    public void start(Stage stage) {
+        HBox root = new HBox();
 
-    // Create a linear gradient using the two colors
-    LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-            new Stop(0, color1), new Stop(1, color2));
+        // Set background image
+        Image backgroundImage = new Image("images/Intial_BackGround.png");
 
-    // Set the gradient as the fill for the text
-    welcomeText.setFill(gradient);
-    root.setAlignment(Pos.CENTER);
-    root.getChildren().add(welcomeText);
+        BackgroundImage backgroundImg = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                null,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+        Background background = new Background(backgroundImg);
+        root.setBackground(background);
 
-    // Create a Timeline to gradually reveal each character
-    Timeline timeline = new Timeline();
-    timeline.setCycleCount(WELCOME_TEXT.length());
-    timeline.getKeyFrames().add(
-            new KeyFrame(Duration.millis(CHAR_DELAY_MS), event -> {
-                if (charIndex < WELCOME_TEXT.length()) {
-                    welcomeText.setText(welcomeText.getText() + WELCOME_TEXT.charAt(charIndex));
-                    charIndex++;
-                }
-            })
-    );
+        Text welcomeText = new Text();
+        welcomeText.setFont(Font.loadFont("file:///C://Users//ah456//Downloads//SuperMario256.ttf", 48));
+        Color color1 = Color.RED;
+        Color color2 = Color.BLUE;
 
-    timeline.setOnFinished(event -> {
-        // Animation finished, transition to the next scene
-        thirdScene(stage);
-    });
+        // Create a linear gradient using the two colors
+        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
+                new Stop(0, color1), new Stop(1, color2));
 
-    timeline.play();
+        // Set the gradient as the fill for the text
+        welcomeText.setFill(gradient);
+        root.setAlignment(Pos.CENTER);
+        root.getChildren().add(welcomeText);
 
-    Scene scene = new Scene(root, 1352, 757);
-    stage.setTitle("Super Mario");
-    stage.setScene(scene);
-     stage.setResizable(false);
-    stage.show();
-}
+        // Create a Timeline to gradually reveal each character
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(WELCOME_TEXT.length());
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(CHAR_DELAY_MS), event -> {
+                    if (charIndex < WELCOME_TEXT.length()) {
+                        welcomeText.setText(welcomeText.getText() + WELCOME_TEXT.charAt(charIndex));
+                        charIndex++;
+                    }
+                })
+        );
 
+        timeline.setOnFinished(event -> {
+            // Animation finished, transition to the next scene
+            thirdScene(stage);
+        });
+
+        timeline.play();
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            logout(stage);
+        });
+        Scene scene = new Scene(root, 1352, 757);
+        stage.setTitle("Super Mario");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+    }
 
     public void thirdScene(Stage Main_Stage) {
 
         Pane Main_Pane = new Pane();
-
+        
         Image coin = new Image("images/coin.gif");
         ImageView coinview = new ImageView(coin);
         coinview.setFitWidth(135);
         coinview.setFitHeight(130);
         coinview.setX(500);
         coinview.setY(465);
-
+            
         Image background_image = new Image("images/BackGround.jpg");
         ImageView background_imageview = new ImageView(background_image);
 
@@ -145,6 +149,11 @@ public void start(Stage stage) {
         });
 
         Play_Button_imageview.setOnMouseClicked(event -> {
+            //  Main_Stage.setScene(new GameWindow(Main_Stage).Create());
+                GameSounds gs = new GameSounds();
+                gs.playmenuSound();
+            PlayWindow window = new PlayWindow();
+            Main_Stage.setScene(window.initContent());
 
         });
 
@@ -177,7 +186,9 @@ public void start(Stage stage) {
         });
 
         Setting_Button_imageview.setOnMouseClicked(event -> {
+           
 
+            SettingWindow.display(Main_Stage, Main_Stage.getScene());
         });
 
         /**
@@ -207,7 +218,10 @@ public void start(Stage stage) {
             About_Button_imageview.setX(About_x);
             About_Button_imageview.setY(About_y);
         });
+        About_Button_imageview.setOnMouseClicked(event -> {
 
+            AboutWindow.display(Main_Stage, Main_Stage.getScene());
+        });
         /**
          * *****************Exit_Button*********************
          */
@@ -245,36 +259,7 @@ public void start(Stage stage) {
 
         });
 
-        Image MuteOff_Button_image = new Image("images/Buttons/MuteOff.png");
-        ImageView MuteOff_Button_imageview = new ImageView(MuteOff_Button_image);
-        int MuteOff_x = 1210;
-        int MuteOff_y = -60;
-        MuteOff_Button_imageview.setFitWidth(200);
-        MuteOff_Button_imageview.setFitHeight(200);
-        MuteOff_Button_imageview.setX(MuteOff_x);
-        MuteOff_Button_imageview.setY(MuteOff_y);
-
-        MuteOff_Button_imageview.setOnMouseEntered(e -> {
-            // Change the image when mouse enters
-            MuteOff_Button_imageview.setImage(new Image("images/Buttons/MuteOff_on.png"));
-
-            MuteOff_Button_imageview.setFitWidth(200);
-            MuteOff_Button_imageview.setFitHeight(200);
-            MuteOff_Button_imageview.setX(MuteOff_x);
-            MuteOff_Button_imageview.setY(MuteOff_y);
-        });
-
-        MuteOff_Button_imageview.setOnMouseClicked(event -> {
-
-            MuteOff_Button_imageview.setImage(new Image("images/Buttons/Mute.png"));
-            MuteOff_Button_imageview.setFitWidth(200);
-            MuteOff_Button_imageview.setFitHeight(200);
-            MuteOff_Button_imageview.setX(MuteOff_x);
-            MuteOff_Button_imageview.setY(MuteOff_y);
-
-        });
-
-        Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Exit_Button_imageview, MuteOff_Button_imageview);
+        Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Exit_Button_imageview);
 
         Scene Main_Scene = new Scene(Main_Pane, 1352, 757);
         Image icon = new Image("images/icon.png");

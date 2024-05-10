@@ -45,7 +45,7 @@ public class MainPage extends Application {
     private static final String Second_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final int CHAR_DELAY_MS = 60; // Delay between characters
     private int charIndex = 0;
-
+     Image icon = new Image("images/icon.png");
     @Override
     public void start(Stage stage) {
         HBox root = new HBox();
@@ -100,6 +100,7 @@ public class MainPage extends Application {
         });
         Scene scene = new Scene(root, 1352, 757);
         stage.setTitle("Super Mario");
+         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -261,7 +262,7 @@ public class MainPage extends Application {
         Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Exit_Button_imageview);
 
         Scene Main_Scene = new Scene(Main_Pane, 1352, 757);
-        Image icon = new Image("images/icon.png");
+       
         Main_Stage.getIcons().add(icon);
         Main_Stage.setTitle("Super Mario");
         Main_Stage.setScene(Main_Scene);

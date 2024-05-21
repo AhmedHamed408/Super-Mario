@@ -5,10 +5,13 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -24,11 +27,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import static main.SettingWindow.selectedMute;
 //import main.GameWindow;
 
 public class MainPage extends Application {
 
-    public void logout(Stage stage) {
+    public static Stage MainStage = new Stage();
+
+    public static void logout(Stage stage) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -40,16 +46,24 @@ public class MainPage extends Application {
             stage.close();
         }
     }
+    public static Scene Main_Scene;
 
     private static final String WELCOME_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final String Second_TEXT = "Welcome to Super Mario, hope you enjoy!";
     private static final int CHAR_DELAY_MS = 60; // Delay between characters
     private int charIndex = 0;
-     Image icon = new Image("images/icon.png");
+    Image icon = new Image("images/icon.png");
+
     @Override
     public void start(Stage stage) {
         HBox root = new HBox();
 
+        GameSounds menuSound1 = new GameSounds();
+        if (selectedMute == "mute_off") {
+            menuSound1.playmenuSound();
+        }
+
+        stage = MainStage;
         // Set background image
         Image backgroundImage = new Image("images/Intial_BackGround.png");
 
@@ -90,17 +104,17 @@ public class MainPage extends Application {
 
         timeline.setOnFinished(event -> {
             // Animation finished, transition to the next scene
-            thirdScene(stage);
+            thirdScene(MainStage);
         });
 
         timeline.play();
         stage.setOnCloseRequest(e -> {
             e.consume();
-            logout(stage);
+            logout(MainStage);
         });
         Scene scene = new Scene(root, 1352, 757);
         stage.setTitle("Super Mario");
-         stage.getIcons().add(icon);
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -109,15 +123,16 @@ public class MainPage extends Application {
 
     public void thirdScene(Stage Main_Stage) {
 
+        Main_Stage = MainStage;
         Pane Main_Pane = new Pane();
-        
+
         Image coin = new Image("images/coin.gif");
         ImageView coinview = new ImageView(coin);
         coinview.setFitWidth(135);
         coinview.setFitHeight(130);
         coinview.setX(500);
         coinview.setY(465);
-            
+
         Image background_image = new Image("images/BackGround.jpg");
         ImageView background_imageview = new ImageView(background_image);
 
@@ -126,7 +141,7 @@ public class MainPage extends Application {
          */
         Image Play_Button_image = new Image("images/Buttons/Play.png");
         ImageView Play_Button_imageview = new ImageView(Play_Button_image);
-        int Play_x = 820;
+        int Play_x = 940;
         int Play_y = 15;
         Play_Button_imageview.setFitWidth(270);
         Play_Button_imageview.setFitHeight(210);
@@ -148,21 +163,17 @@ public class MainPage extends Application {
             Play_Button_imageview.setX(Play_x);
             Play_Button_imageview.setY(Play_y);
         });
-
         Play_Button_imageview.setOnMouseClicked(event -> {
-            //  Main_Stage.setScene(new GameWindow(Main_Stage).Create());
-               
-            PlayWindow window = new PlayWindow();
-            Main_Stage.setScene(window.initContent());
 
+            SuperMario dfMario = new SuperMario();
+            dfMario.DisplayPlayMode(MainStage);
         });
-
         /**
          * *****************Setting_Button_image*********************
          */
         Image Setting_Button_image = new Image("images/Buttons/Setting.png");
         ImageView Setting_Button_imageview = new ImageView(Setting_Button_image);
-        int Setting_x = 940;
+        int Setting_x = 820;
         int Setting_y = 125;
         Setting_Button_imageview.setFitWidth(270);
         Setting_Button_imageview.setFitHeight(210);
@@ -186,9 +197,8 @@ public class MainPage extends Application {
         });
 
         Setting_Button_imageview.setOnMouseClicked(event -> {
-           
 
-            SettingWindow.display(Main_Stage, Main_Stage.getScene());
+            SettingWindow.display(MainStage, MainStage.getScene());
         });
 
         /**
@@ -197,7 +207,7 @@ public class MainPage extends Application {
         Image About_Button_image = new Image("images/Buttons/About.png");
         ImageView About_Button_imageview = new ImageView(About_Button_image);
         int About_x = 820;
-        int About_y = 235;
+        int About_y = 350;
         About_Button_imageview.setFitWidth(270);
         About_Button_imageview.setFitHeight(210);
         About_Button_imageview.setX(About_x);
@@ -220,15 +230,48 @@ public class MainPage extends Application {
         });
         About_Button_imageview.setOnMouseClicked(event -> {
 
-            AboutWindow.display(Main_Stage, Main_Stage.getScene());
+            AboutWindow.display(MainStage, MainStage.getScene());
         });
+        /**
+         * *****************Maps_Button_image*********************
+         */
+
+        Image Maps_Button_image = new Image("images/Buttons/Maps.png");
+        ImageView Maps_Button_imageview = new ImageView(Maps_Button_image);
+        int Maps_x = 940;
+        int Maps_y = 235;
+        Maps_Button_imageview.setFitWidth(270);
+        Maps_Button_imageview.setFitHeight(210);
+        Maps_Button_imageview.setX(Maps_x);
+        Maps_Button_imageview.setY(Maps_y);
+
+        Maps_Button_imageview.setOnMouseEntered(event -> {
+            Maps_Button_imageview.setImage(new Image("images/Buttons/Maps_on.png"));
+            Maps_Button_imageview.setFitWidth(270 + 50);
+            Maps_Button_imageview.setFitHeight(210 + 50);
+            Maps_Button_imageview.setX(Maps_x);
+            Maps_Button_imageview.setY(Maps_y - 20);
+        });
+
+        Maps_Button_imageview.setOnMouseExited(e -> {
+            Maps_Button_imageview.setImage(Maps_Button_image);
+            Maps_Button_imageview.setFitWidth(270);
+            Maps_Button_imageview.setFitHeight(210);
+            Maps_Button_imageview.setX(Maps_x);
+            Maps_Button_imageview.setY(Maps_y);
+        });
+        Maps_Button_imageview.setOnMouseClicked(event -> {
+
+            MapsWindow.display(MainStage, MainStage.getScene());
+        });
+
         /**
          * *****************Exit_Button*********************
          */
         Image Exit_Button_image = new Image("images/Buttons/Exit.png");
         ImageView Exit_Button_imageview = new ImageView(Exit_Button_image);
         int Exit_x = 940;
-        int Exit_y = 350;
+        int Exit_y = 465;
         Exit_Button_imageview.setFitWidth(270);
         Exit_Button_imageview.setFitHeight(210);
         Exit_Button_imageview.setX(Exit_x);
@@ -255,14 +298,14 @@ public class MainPage extends Application {
 
         Exit_Button_imageview.setOnMouseClicked(event -> {
 
-            logout(Main_Stage);
+            logout(MainStage);
 
         });
 
-        Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Exit_Button_imageview);
+        Main_Pane.getChildren().addAll(background_imageview, coinview, Play_Button_imageview, Setting_Button_imageview, About_Button_imageview, Maps_Button_imageview, Exit_Button_imageview);
 
-        Scene Main_Scene = new Scene(Main_Pane, 1352, 757);
-       
+        Main_Scene = new Scene(Main_Pane, 1352, 757);
+
         Main_Stage.getIcons().add(icon);
         Main_Stage.setTitle("Super Mario");
         Main_Stage.setScene(Main_Scene);

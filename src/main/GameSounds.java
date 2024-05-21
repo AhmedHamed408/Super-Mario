@@ -23,100 +23,91 @@ public class GameSounds {
     private Media fallSound_media;       
     
     public GameSounds() {
-        File playSound_File = new File("sounds/playsound.mp3");
-        playSound_media = new Media(playSound_File.toURI().toString());
-        playSound = new MediaPlayer(playSound_media);
-        
-        File menuSound_File = new File("D:\\My%20Projects\\Super-Mario\\src/sounds\\menusound.mp3");
-        menuSound_media = new Media(menuSound_File.toURI().toString());
-        menuSound = new MediaPlayer(menuSound_media);
-        
-        File jumpSound_File = new File("sounds/jumpsound.mp3");        
-        jumpSound_media = new Media(jumpSound_File.toURI().toString());
-        jumpSound = new MediaPlayer(jumpSound_media);
-        
-        File coinSound_File = new File("sounds/coinsound.mp3");
-        coinSound_media = new Media(coinSound_File.toURI().toString());
-        coinSound = new MediaPlayer(coinSound_media);
-
-        File winSound_File = new File("sounds/winsound.mp3");        
-        winSound_media = new Media(winSound_File.toURI().toString());
-        winSound = new MediaPlayer(winSound_media);
-        
        
-        File loseSound_File = new File("sounds/losesound.mp3");
-        loseSound_media = new Media(loseSound_File.toURI().toString());
-        loseSound = new MediaPlayer(loseSound_media);
         
-        File levelUpSound_File = new File("sounds/levelsound.mp3");        
-        levelUpSound_media = new Media(levelUpSound_File.toURI().toString());
-        levelUpSound = new MediaPlayer(levelUpSound_media);
-
-        File fallSound_File = new File("sounds/fallsound.mp3");        
-        fallSound_media = new Media(fallSound_File.toURI().toString());
-        fallSound = new MediaPlayer(fallSound_media);
-
+        playSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/playsound.mp3");
+        playSound = new MediaPlayer(playSound_media);
+        playSound.setCycleCount(playSound.INDEFINITE);
+        playSound.setVolume(0.1);
+        
+        menuSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/menusound.mp3");
+        menuSound = new MediaPlayer(menuSound_media);
+        menuSound.setCycleCount(menuSound.INDEFINITE);
+        menuSound.setVolume(0.1);
+       
+        jumpSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/jumpsound.mp3");
+        jumpSound = new MediaPlayer(jumpSound_media);
+        jumpSound.setVolume(0.5);
+        
+        coinSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/coinsound.mp3");
+        coinSound = new MediaPlayer(coinSound_media);
+        coinSound.setVolume(0.5); 
+           
+        winSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/winsound.mp3");
+        winSound = new MediaPlayer(winSound_media);
+        winSound.setVolume(0.5);
+       
+        
+        loseSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/losesound.mp3");
+        loseSound = new MediaPlayer(loseSound_media);
+        loseSound.setVolume(0.5);
+       
+        
+        fallSound_media = new Media("file:///D:/CSE/My%20C%20Projects/Super-Mario/src/sounds/fallsound.mp3");
+        fallSound = new MediaPlayer(fallSound_media);  
+        fallSound.setVolume(0.5);
         
        
        
     }
-    
-    public void playplaySound() {
-        playSound.stop();
-        playSound.play();
-    } 
     
     
     public void playmenuSound() {
-        menuSound.stop();
         menuSound.play();
     }
-    
-    
+
+    public void stopmenuSound() {
+
+        menuSound.stop();
+    }
+
+
     public void playJumpSound() {
         jumpSound.stop();
         jumpSound.play();
     }
-    
-    
+
+
     public void playCoinSound() {
         coinSound.stop();
         coinSound.play();
     }
-    
-    
+    // playplaySound()  playmenuSound    playJumpSound  playCoinSound    playWinSound  playLoseSound   playlevelUpSound   playFallSound   stopAllSounds
+
     public void playWinSound() {
         winSound.stop();
         winSound.play();
     }
-    
+
     public void playLoseSound() {
         loseSound.stop();
         loseSound.play();
     }
-    
-    
-    public void playlevelUpSound() {
-        levelUpSound.stop();
-        levelUpSound.play();
-    }
-    
-    
+
     public void playFallSound() {
         fallSound.stop();
         fallSound.play();
     }
-    
-    
+
+
     public void stopAllSounds() {
         jumpSound.stop();
         coinSound.stop();
         winSound.stop();
         loseSound.stop();
-        levelUpSound.stop();
         fallSound.stop();
         menuSound.stop();
-        playSound.stop();
-        
+
+
     }
 }

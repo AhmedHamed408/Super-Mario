@@ -32,7 +32,8 @@ This is a modernized Super Mario game created using Java and JavaFX. It offers a
 
 ## LinkedIn Post
 
-Check out our latest update on LinkedIn: [Link](https://www.linkedin.com/posts/madyhamed_java-javafx-oop-activity-7199137918223892480-jEaw)
+Check out our latest update on LinkedIn: [![icons8-linkedin-circled](https://github.com/AhmedHamed408/Super-Mario/assets/128772653/11fbd0e2-eedb-479a-8598-5be3fee6a870)
+](https://www.linkedin.com/posts/madyhamed_java-javafx-oop-activity-7199137918223892480-jEaw)
 
 ## License
 
